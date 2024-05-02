@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="base" class="item">
+        <div id="foto" class="item">
+          <a
+            data-flickr-embed="true"
+            href="https://www.flickr.com/photos/200663444@N08/53694115880/in/dateposted-public/"
+            title="logo02"
+            ><img
+              class="fotoFormulario"
+              src="https://live.staticflickr.com/65535/53694115880_067ca5aab4_n.jpg"
+              width="320"
+              height="320"
+              alt="logo02"
+          /></a>
+          <script
+            async
+            src="//embedr.flickr.com/assets/client-code.js"
+            charset="utf-8"
+          ></script>
+        </div>
+        <div id="formulario" class="item">
+          <h1>N.O.R</h1>
+          <h2>Cadastro de Aluno</h2>
+          <!-- PARTE DO ID -->
+          <label>ID</label>
+          <input type="text" id="idDoFuncionario" class="cxDeTexto" disabled />
+          <!-- PARTE DO NOME -->
+          <label>Nome</label>
+          <input type="text" id="nomeDoFuncionario" class="cxDeTexto" />
+          <!-- PARTE DO CARGO -->
+          <label>Cargo</label>
+          <input type="text" id="cargoDoFuncionario" class="cxDeTexto" />
+          <!-- PARTE DO SALARIO -->
+          <label>Matrícula</label>
+          <input type="text" id="salarioDoFuncionario" class="cxDeTexto" />
+          <button onclick="disparaAoClicar()" id="botao01">Lançar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function disparaAoClicar() {
+      var idDoFuncionario = document.getElementById("idDoFuncionario").value;
+      var nomeDoFuncionario =
+        document.getElementById("nomeDoFuncionario").value;
+      var cargoDoFuncionario =
+        document.getElementById("cargoDoFuncionario").value;
+      var salarioDoFuncionario = document.getElementById(
+        "salarioDoFuncionario"
+      ).value;
+
+      // console.log(idDoFuncioanrio)
+      // console.log(nomeDoFuncioanrio)
+      // console.log(cargoDoFuncioanrio)
+      // console.log(salarioDoFuncioanrio)
+
+      $.ajax({
+        type: "POST",
+        data: {
+          idDoFuncionario: idDoFuncionario,
+          nomeDoFuncionario: nomeDoFuncionario,
+          cargoDoFuncionario: cargoDoFuncionario,
+          salarioDoFuncionario: salarioDoFuncionario,
+        },
+        url: "https://script.google.com/macros/s/AKfycbwnMdFFFc5inU7HiZSs52O5ZlBghKFbRRhD5WSjLqDlG0Cr3ixxqPj9Bbme_rZG6g3cwA/exec",
+      }).done(function () {
+        document.getElementById("idDoFuncionario").value = "";
+        document.getElementById("nomeDoFuncionario").value = "";
+        document.getElementById("cargoDoFuncionario").value = "";
+        document.getElementById("salarioDoFuncionario").value = "";
+
+        alert("Funcionário cadastrado com sucesso!");
+      });
+    }
+  </script>
+</html>
